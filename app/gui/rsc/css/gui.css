@@ -1,0 +1,357 @@
+/* Background color */
+body {
+    background-color: #1F1F1F;
+}
+
+/* Navigation bar size */
+nav {
+    height: 30px;
+    line-height: 30px;
+}
+
+/* Fixed footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+}
+
+/* Seperates content from navigation bar */
+.fixed-navbar-separator {
+    height: 40px;
+}
+
+/* Seperates content from footer */
+.fixed-footer-separator {
+    height: 32px;
+}
+
+/* Custom waves effect color */
+.waves-effect.waves-blue .waves-ripple {
+    background-color: rgba(25, 118, 210, 0.75);
+}
+
+/* Hide scrollbars */
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+/* Text selection color */
+::selection {
+    background: rgba(25, 118, 210, 0.75);
+}
+
+/* Chartjs canvas container */
+.chart-canvas {
+    padding: 35px 10px 0px 10px;
+    height: 256px;
+    width: 100%;
+}
+
+/* Contenteditable padding */
+.pad-contenteditable {
+    padding: 10px 10px 10px 10px;
+    display: block !important;
+}
+
+/* Vertical tab subclasses */
+.tabs-vertical .tabs {
+    height: auto;
+    flex-direction: column;
+    display: flex;
+}
+
+.tabs-vertical .tab {
+    width: 100%;
+}
+
+.tabs-vertical .tab .active {
+    transition: border-color 0.5s ease;
+}
+
+.tabs-vertical .tab :hover {}
+
+.tabs-vertical .indicator {
+    display: none;
+}
+
+.tabs-vertical .tab-content {
+    display: none;
+}
+
+.tabs-vertical > .tab-content .active {
+    display: block;
+    /* Hide underline */
+}
+
+.tabs-vertical .tabs .tab a {
+    color: #555;
+    /* Text color inactive */
+}
+
+.tabs-vertical .tabs .tab a:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+    color: #000;
+    /* Text color on hover */
+}
+
+.tabs-vertical .tabs .tab a.active {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #000;
+    /* Background and text color when a tab is active */
+}
+
+/* Radio button style */
+[type="radio"]:checked + span:after,
+[type="radio"].with-gap:checked + span:before,
+[type="radio"].with-gap:checked + span:after {
+    border: 2px solid #1976D2;
+}
+
+[type="radio"]:checked + span:after,
+[type="radio"].with-gap:checked + span:after {
+    background-color: #1976D2;
+}
+
+/* Text input style for number type */
+/* Label color */
+.input-field label {
+    color: #000 !important;
+}
+
+/* Label focus color */
+.input-field input[type=number]:focus + label {
+    color: #1976D2 !important;
+}
+
+/* Label underline focus color */
+.input-field input[type=number]:focus {
+    border-bottom: 1px solid #1976D2 !important;
+    box-shadow: 0 1px 0 0 #1976D2 !important;
+}
+
+/* Valid color */
+.input-field input[type=number].valid {
+    border-bottom: 1px solid #1976D2 !important;
+    box-shadow: 0 1px 0 0 #1976D2 !important;
+}
+
+/* Invalid color */
+.input-field input[type=number].invalid {
+    border-bottom: 1px solid #F00 !important;
+    box-shadow: 0 1px 0 0 #F00 !important;
+}
+
+/* Icon prefix focus color */
+.input-field .prefix.active {
+    color: #1976D2 !important;
+}
+
+/* Switch color customization */
+.switch label input[type=checkbox]:checked + .lever {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.switch label input[type=checkbox]:checked + .lever:after {
+    background-color: #1976D2;
+}
+
+.switch label .lever {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.switch label .lever:after {
+    background-color: #F1F1F1;
+}
+
+/* Incompatible resolution overlay subclasses */
+.overlay {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.overlay p {
+    font-size: 0px;
+}
+
+.lds-ripple {
+    display: none;
+}
+
+@media only screen and (max-width: 400px),
+only screen and (max-height: 132px) {
+    .overlay {
+        padding-top: 25px;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        z-index: 999999;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 1);
+        overflow-x: hidden;
+        transition: 0.3s;
+    }
+
+    .overlay center {
+        position: relative;
+        text-align: center;
+        width: 50%;
+        margin: auto;
+    }
+
+    .overlay p {
+        font-size: 12px;
+        color: rgba(256, 256, 256, 0.85);
+        display: block;
+        transition: 0.3s;
+    }
+
+    .lds-ripple {
+        display: inline-block;
+        position: relative;
+        width: 64px;
+        height: 64px;
+    }
+
+    .lds-ripple div {
+        position: absolute;
+        border: 5px solid #1976D2;
+        border-radius: 50%;
+        animation: lds-ripple 1.5s cubic-bezier(0, 0.3, 0, 1) infinite;
+    }
+
+    .lds-ripple div:nth-child(2) {
+        animation-delay: -0.5s;
+    }
+
+    @keyframes lds-ripple {
+        0% {
+            top: 28px;
+            left: 28px;
+            width: 0;
+            height: 0;
+            opacity: 1;
+        }
+
+        100% {
+            top: -1px;
+            left: -1px;
+            width: 58px;
+            height: 58px;
+            opacity: 0;
+        }
+    }
+
+    /* Hide overlay scrollbars */
+    .os-theme-thick-light > .os-scrollbar {
+        display: none;
+    }
+}
+
+/* Custom scrollbar theme: os-theme-thick-light */
+.os-theme-thick-light > .os-scrollbar {
+    padding: 5px;
+}
+
+.os-theme-thick-light > .os-scrollbar:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 15px;
+    top: 32px;
+    bottom: 32px;
+    right: 2px;
+    left: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.os-theme-thick-light > .os-scrollbar:hover:before {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.os-theme-thick-light > .os-scrollbar.active:before {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.os-theme-thick-light > .os-scrollbar-horizontal {
+    right: 18px;
+    height: 18px;
+}
+
+.os-theme-thick-light > .os-scrollbar-vertical {
+    padding-top: 35px;
+    padding-bottom: 35px;
+    width: 18px;
+}
+
+.os-theme-thick-light.os-host-rtl > .os-scrollbar-horizontal {
+    left: 18px;
+    right: 0;
+}
+
+.os-theme-thick-light > .os-scrollbar-corner {
+    height: 18px;
+    width: 18px;
+    background-color: transparent;
+}
+
+.os-theme-thick-light > .os-scrollbar > .os-scrollbar-track {
+    background: transparent;
+}
+
+.os-theme-thick-light > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 15px;
+}
+
+.os-theme-thick-light > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.os-theme-thick-light > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle.active {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.os-theme-thick-light > .os-scrollbar-horizontal > .os-scrollbar-track > .os-scrollbar-handle {
+    min-width: 30px;
+}
+
+.os-theme-thick-light > .os-scrollbar-vertical > .os-scrollbar-track > .os-scrollbar-handle {
+    min-height: 30px;
+}
+
+.os-theme-thick-light > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -3px;
+    bottom: -5px;
+    display: block;
+}
+
+.os-theme-thick-light > .os-scrollbar-horizontal > .os-scrollbar-track > .os-scrollbar-handle:before {
+    top: -3px;
+    bottom: -5px;
+}
+
+.os-theme-thick-light > .os-scrollbar-vertical > .os-scrollbar-track > .os-scrollbar-handle:before {
+    left: -3px;
+    right: -5px;
+}
+
+.os-theme-thick-light.os-host-rtl > .os-scrollbar-vertical > .os-scrollbar-track > .os-scrollbar-handle:before {
+    right: -3px;
+    left: -5px;
+}
+
+.os-theme-thick-light.os-host-transition > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle {
+    transition: background 0.3s;
+}
+
+.os-theme-thick-light.os-host-transition > .os-scrollbar:before {
+    transition: border 0.3s;
+}

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- title -->
+    <title>PACView</title>
+    <!-- meta -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="i41690" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- ico -->
+    <link rel="shortcut icon" href="rsc/img/logo.ico" />
+    <!-- js -->
+    <script type="application/javascript" src="/eel.js"></script>
+    <script type="application/javascript" src="rsc/js/jquery.js"></script>
+    <script type="application/javascript" src="rsc/js/moment.js"></script>
+    <script type="application/javascript" src="rsc/js/chart.js"></script>
+    <script type="application/javascript" src="rsc/js/materialize.js"></script>
+    <script type="application/javascript" src="rsc/js/guage.js"></script>
+    <script type="application/javascript" src="rsc/js/overlayscrollbars.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="rsc/css/chart.css" />
+    <link rel="stylesheet" type="text/css" href="rsc/css/materialize.css" />
+    <link rel="stylesheet" type="text/css" href="rsc/css/overlayscrollbars.css" />
+    <link rel="stylesheet" type="text/css" href="rsc/css/gui.css" />
+</head>
+
+<body id="id-capture-click">
+    <!-- Incompatible resolution overlay -->
+    <div class="overlay">
+        <div class="center">
+            <div class="lds-ripple">
+                <div></div>`
+                <div></div>
+            </div>
+            <p>Incompatible resolution</p>
+        </div>
+    </div>
+    <!-- title bar -->
+    <header>
+        <!-- title bar - File -->
+        <ul id="id-title-bar-file-dropdown" class="dropdown-content">
+            <li class="grey darken-3"><a id="id-title-bar-file-save-settings">Save Settings</a></li>
+            <li class="divider grey"></li>
+            <li class="grey darken-3"><a id="id-title-bar-file-load-settings">Load Settings</a></li>
+        </ul>
+        <!-- title bar - Tools -->
+        <ul id="id-title-bar-tools-dropdown" class="dropdown-content">
+            <li class="grey darken-3 modal-trigger" data-target="id-title-bar-tools-settings-modal"><a id="id-title-bar-tools-settings">Settings</a></li>
+            <li class="divider grey"></li>
+            <li class="grey darken-3 modal-trigger" data-target="id-title-bar-tools-reset-all-modal"><a id="id-title-bar-tools-reset-all">Reset All</a></li>
+        </ul>
+        <!-- title bar - Help -->
+        <ul id="id-title-bar-help-dropdown" class="dropdown-content">
+            <li class="grey darken-3"><a id="id-title-bar-help-source">Source</a></li>
+            <li class="divider grey"></li>
+            <li class="grey darken-3 modal-trigger" data-target="id-title-bar-help-about-modal"><a id="id-title-bar-help-about">About</a></li>
+        </ul>
+        <div class="navbar-fixed fixed-navbar-separator">
+            <nav class="blue darken-2">
+                <ul>
+                    <li><a class="dropdown-trigger" data-target="id-title-bar-file-dropdown">File</a></li>
+                    <li><a class="dropdown-trigger" data-target="id-title-bar-tools-dropdown">Tools</a></li>
+                    <li><a class="dropdown-trigger" data-target="id-title-bar-help-dropdown">Help</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- tools-settings modal -->
+        <div id="id-title-bar-tools-settings-modal" class="modal white">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="col s12">
+                        <h4>Settings</h4>
+                    </div>
+                    <div class="tabs-vertical col s12 m5">
+                        <ul class="tabs no-scroll">
+                            <li class="tab"><a id="id-tbtsm-sense-tab" class="active" href="#id-tbtsm-sense-tab-content">Sense Resistors</a></li>
+                            <li class="tab"><a id="id-tbtsm-samples-tab" class="active" href="#id-tbtsm-samples-tab-content">Sample Rate</a></li>
+                            <li class="tab"><a id="id-tbtsm-refresh-tab" class="active" href="#id-tbtsm-refresh-tab-content">Refresh Rate</a></li>
+                            <li class="tab"><a id="id-tbtsm-avg-tab" class="active" href="#id-tbtsm-avg-tab-content">Averaging</a></li>
+                        </ul>
+                    </div>
+                    <div class="col s12 m7">
+                        <div id="id-tbtsm-sense-tab-content" class="tabcontent">
+                            <div class="row">
+                                <p class="col s12">Sense resistor value in Ohms</p>
+                                <div class="input-field col s6">
+                                    <input id="id-tbtsm-sense-value-channel-1" min="0.001" step="0.001" type="number" class="validate">
+                                    <label for="id-tbtsm-sense-value-channel-1">Channel 1</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="id-tbtsm-sense-value-channel-2" min="0.001" step="0.001" type="number" class="validate">
+                                    <label for="id-tbtsm-sense-value-channel-2">Channel 2</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="id-tbtsm-sense-value-channel-3" min="0.001" step="0.001" type="number" class="validate">
+                                    <label for="id-tbtsm-sense-value-channel-3">Channel 3</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="id-tbtsm-sense-value-channel-4" min="0.001" step="0.001" type="number" class="validate">
+                                    <label for="id-tbtsm-sense-value-channel-4">Channel 4</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="id-tbtsm-samples-tab-content" class="tabcontent">
+                            <div class="row">
+                                <p class="col s12">Sample rate in samples per second</p>
+                                <p class="col s6">
+                                    <label>
+                                        <input name="id-tbtsm-samples-radio-group" type="radio" checked value="1024" />
+                                        <span class="black-text">1024</span>
+                                    </label>
+                                </p>
+                                <p class="col s6">
+                                    <label>
+                                        <input name="id-tbtsm-samples-radio-group" type="radio" value="256" />
+                                        <span class="black-text">256</span>
+                                    </label>
+                                </p>
+                                <p class="col s6">
+                                    <label>
+                                        <input name="id-tbtsm-samples-radio-group" type="radio" value="64" />
+                                        <span class="black-text">64</span>
+                                    </label>
+                                </p>
+                                <p class="col s6">
+                                    <label>
+                                        <input name="id-tbtsm-samples-radio-group" type="radio" value="8" />
+                                        <span class="black-text">8</span>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                        <div id="id-tbtsm-refresh-tab-content" class="tabcontent">
+                            <div class="row">
+                                <p class="col s12">Refresh rate in milliseconds</p>
+                                <div class="input-field col s6">
+                                    <input id="id-tbtsm-refresh-value-channel-1" min="75" max="1000" step="1" type="number" class="validate">
+                                    <label for="id-tbtsm-refresh-value-channel-1">Channel 1</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="id-tbtsm-refresh-value-channel-2" min="75" max="1000" step="1" type="number" class="validate">
+                                    <label for="id-tbtsm-refresh-value-channel-2">Channel 2</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="id-tbtsm-refresh-value-channel-3" min="75" max="1000" step="1" type="number" class="validate">
+                                    <label for="id-tbtsm-refresh-value-channel-3">Channel 3</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="id-tbtsm-refresh-value-channel-4" min="75" max="1000" step="1" type="number" class="validate">
+                                    <label for="id-tbtsm-refresh-value-channel-4">Channel 4</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="id-tbtsm-avg-tab-content" class="tabcontent">
+                            <div class="row">
+                                <p class="col s12">Enable 8x HW Averaging</p>
+                                <div class="col s6">
+                                    <div class="section">Channel 1</div>
+                                </div>
+                                <div class="col s6">
+                                    <div class="switch section">
+                                        <label>
+                                            Off
+                                            <input type="checkbox" id="id-tbtsm-avg-channel-1">
+                                            <span class="lever"></span>
+                                            On
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col s6">
+                                    <div class="section">Channel 2</div>
+                                </div>
+                                <div class="col s6">
+                                    <div class="switch section">
+                                        <label>
+                                            Off
+                                            <input type="checkbox" id="id-tbtsm-avg-channel-2">
+                                            <span class="lever"></span>
+                                            On
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col s6">
+                                    <div class="section">Channel 3</div>
+                                </div>
+                                <div class="col s6">
+                                    <div class="switch section">
+                                        <label>
+                                            Off
+                                            <input type="checkbox" id="id-tbtsm-avg-channel-3">
+                                            <span class="lever"></span>
+                                            On
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col s6">
+                                    <div class="section">Channel 4</div>
+                                </div>
+                                <div class="col s6">
+                                    <div class="switch section">
+                                        <label>
+                                            Off
+                                            <input type="checkbox" id="id-tbtsm-avg-channel-4">
+                                            <span class="lever"></span>
+                                            On
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer grey lighten-2">
+                <a id="id-submit-settings" class="modal-close waves-effect waves-blue btn-flat">OK</a>
+            </div>
+        </div>
+        <!-- tools-reset all modal -->
+        <div id="id-title-bar-tools-reset-all-modal" class="modal">
+            <div class="modal-content white">
+                <h4>Warning!</h4>
+                <p>This will reset everything to default and overwrite your saved settings!</p>
+                <p>Are you sure?</p>
+            </div>
+            <div class="modal-footer grey lighten-2">
+                <a id="id-title-bar-tools-reset-all-confirm" class="modal-close waves-effect waves-blue btn-flat">YES</a>
+                <a class="modal-close waves-effect waves-blue btn-flat">NO</a>
+            </div>
+        </div>
+        <!-- help-about modal -->
+        <div id="id-title-bar-help-about-modal" class="modal">
+            <div class="modal-content white">
+                <img class="responsive-img" src="rsc/img/namelogo.png">
+                <p>PACView</p>
+                <p>GUI for the PAC1934 4-Channel DC Power Monitor Evaluation Board</p>
+            </div>
+            <div class="modal-footer grey lighten-2">
+                <a class="modal-close waves-effect waves-blue btn-flat">OK</a>
+            </div>
+        </div>
+    </header>
+    <!-- main app view -->
+    <main>
+        <div class="container">
+            <ul class="collapsible expandable">
+                <li>
+                    <div class="collapsible-header"><b><span spellcheck="false" class="validate-contenteditable collapsible-deadzone pad-contenteditable" id="id-rename-channel-1" contenteditable="true">Channel 1</span></b></div>
+                    <div class="collapsible-body">
+                        <span>
+                            <div class="row" id="row-1">
+                                <div class="col s6 m3">
+                                    <div class="card">
+                                        <div class="chart-canvas">
+                                            <canvas id="id-channel-voltage-guage-1"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s6 m3">
+                                    <div class="card">
+                                        <div class="chart-canvas">
+                                            <canvas id="id-channel-current-guage-1"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s12 m6">
+                                    <div class="card">
+                                        <div class="chart-canvas" id="id-control-current-chart-1">
+                                            <canvas id="id-channel-current-chart-1"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><b><span spellcheck="false" class="validate-contenteditable collapsible-deadzone pad-contenteditable" id="id-rename-channel-2" contenteditable="true">Channel 2</span></b></div>
+                    <div class="collapsible-body">
+                        <span>
+                            <div class="row" id="row-2">
+                                <div class="col s6 m3">
+                                    <div class="card">
+                                        <div class="chart-canvas">
+                                            <canvas id="id-channel-voltage-guage-2"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s6 m3">
+                                    <div class="card">
+                                        <div class="chart-canvas">
+                                            <canvas id="id-channel-current-guage-2"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s12 m6">
+                                    <div class="card">
+                                        <div class="chart-canvas" id="id-control-current-chart-2">
+                                            <canvas id="id-channel-current-chart-2"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><b><span spellcheck="false" class="validate-contenteditable collapsible-deadzone pad-contenteditable" id="id-rename-channel-3" contenteditable="true">Channel 3</span></b></div>
+                    <div class="collapsible-body">
+                        <span>
+                            <div class="row" id="row-3">
+                                <div class="col s6 m3">
+                                    <div class="card">
+                                        <div class="chart-canvas">
+                                            <canvas id="id-channel-voltage-guage-3"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s6 m3">
+                                    <div class="card">
+                                        <div class="chart-canvas">
+                                            <canvas id="id-channel-current-guage-3"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s12 m6">
+                                    <div class="card">
+                                        <div class="chart-canvas" id="id-control-current-chart-3">
+                                            <canvas id="id-channel-current-chart-3"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><b><span spellcheck="false" class="validate-contenteditable collapsible-deadzone pad-contenteditable" id="id-rename-channel-4" contenteditable="true">Channel 4</span></b></div>
+                    <div class="collapsible-body">
+                        <span>
+                            <div class="row" id="row-4">
+                                <div class="col s6 m3">
+                                    <div class="card">
+                                        <div class="chart-canvas">
+                                            <canvas id="id-channel-voltage-guage-4"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s6 m3">
+                                    <div class="card">
+                                        <div class="chart-canvas">
+                                            <canvas id="id-channel-current-guage-4"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s12 m6">
+                                    <div class="card">
+                                        <div class="chart-canvas" id="id-control-current-chart-4">
+                                            <canvas id="id-channel-current-chart-4"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+    <!-- status bar -->
+    <div class="fixed-footer-separator">
+        <footer>
+            <nav class="blue darken-2">
+                <ul class="left">
+                    <li><a id="id-status-left"></a></li>
+                </ul>
+                <ul class="right">
+                    <li><a id="id-status-right"></a></li>
+
+                </ul>
+            </nav>
+        </footer>
+    </div>
+    <!-- js -->
+    <script type="application/javascript" src="gui.js"></script>
+</body>
+
+</html>
