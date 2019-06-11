@@ -6,7 +6,7 @@ Juts use the executable provided in the [release](https://github.com/mhtmhn/PACV
 You'll need to compile an executable from source.
 ##### Steps
 1. Download the latest [release](https://github.com/mhtmhn/PACView-Source/releases) and extract it.
-2. First cd to /PACView-Source-0.1.0/app/ folder then run these commands:
+2. First cd to /PACView-Source-x.x.x/app/ folder then run these commands:
 ```shell-script sudo x
 sudo apt-get update && sudo apt-get dist-upgrade
 sudo apt-get install wget
@@ -33,4 +33,4 @@ SUBSYSTEM=="usb", ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="00dd", MODE="0666"
 KERNEL=="hidraw*", ATTRS{busnum}=="1", ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="00dd", MODE="0666"
 ```
 4. Restart your PC
-5. Run executable from the /PACView-Source-0.1.0/app/dist/ folder
+5. Run executable from the /PACView-Source-x.x.x/app/dist/ folder
