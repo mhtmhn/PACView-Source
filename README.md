@@ -6,7 +6,7 @@ Juts use the executable provided in the [release](https://github.com/mhtmhn/PACV
 You'll need to compile an executable from source.
 ##### Steps
 1. Download the latest [release](https://github.com/mhtmhn/PACView-Source/releases) and extract it.
-2. First cd to \PACView-Source-0.1.0\app\ folder then run these commands:
+2. First cd to /PACView-Source-0.1.0/app/ folder then run these commands:
 ```shell-script sudo x
 sudo apt-get update && sudo apt-get dist-upgrade
 sudo apt-get install wget
@@ -22,6 +22,7 @@ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-ke
 sudo sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 sudo apt-get update
 sudo apt-get install google-chrome-stable
+python3 -m eel gui.py gui --noconsole --onefile
 ```
 3. Add udev rules for the MCP2221A USB HID to I2C bridge.
 ```
@@ -32,3 +33,4 @@ SUBSYSTEM=="usb", ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="00dd", MODE="0666"
 KERNEL=="hidraw*", ATTRS{busnum}=="1", ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="00dd", MODE="0666"
 ```
 4. Restart your PC
+5. Run executable from the /PACView-Source-0.1.0/app/dist/ folder
