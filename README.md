@@ -1,7 +1,7 @@
 # PACView-Source
 ## Installation
 ### Windows
-Juts use the executable provided in the [release](https://github.com/mhtmhn/PACView-Source/releases).
+Just use the executable provided in the [release](https://github.com/mhtmhn/PACView-Source/releases).
 ### Ubuntu
 You'll need to compile an executable from source.
 ##### Steps
