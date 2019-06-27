@@ -18,6 +18,7 @@ sudo python3 -m pip install hidapi
 sudo python3 -m pip install eel
 sudo python3 -m pip install EasySettings
 sudo python3 -m pip install toml
+sudo python3 -m pip install PyInstaller
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
 sudo sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 sudo apt-get update
@@ -25,6 +26,8 @@ sudo apt-get install google-chrome-stable
 python3 -m eel gui.py gui --noconsole --onefile
 ```
 3. Add udev rules for the MCP2221A USB HID to I2C bridge.
+In ```/etc/udev/rules.d/``` add a file ```99-hid.rules```
+with the following contents and save. Use ```chmod``` to give it ```a+x``` access.
 ```
 # HIDAPI/libusb
 SUBSYSTEM=="usb", ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="00dd", MODE="0666"
