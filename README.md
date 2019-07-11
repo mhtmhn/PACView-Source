@@ -47,6 +47,7 @@ KERNEL=="hidraw*", ATTRS{busnum}=="1", ATTRS{idVendor}=="04d8", ATTRS{idProduct}
 
 ## Troubleshooting
 ### General
+* Make sure the USB_I2C switch on the kit is ON.
 * Drivers are automatically installed in Windows 10, Ubuntu. If they're not installed automatically, try downloading and installing them from here: https://www.microchip.com/wwwproducts/en/MCP2221A
 ### Ubuntu
 * If the ```port 8080``` is already in use, the application may fail to start/work.
