@@ -1,4 +1,11 @@
 # PACView-Source
+## Description
+PACView is a multi-platform, mordern and minimal GUI for the PAC1934 evaluation kit sold by Microchip.
+
+Part Number: ADM00805
+<a href="https://www.microchip.com/DevelopmentTools/ProductDetails/PartNo/ADM00805">![PAC1934](https://raw.githubusercontent.com/mhtmhn/PACView-Source/master/ADM00805.png)</a>
+
+The source code is provided under the terms of the permissive MIT license.
 ## Installation
 ### Windows
 Just use the executable provided in the [release](https://github.com/mhtmhn/PACView-Source/releases).
@@ -37,3 +44,39 @@ KERNEL=="hidraw*", ATTRS{busnum}=="1", ATTRS{idVendor}=="04d8", ATTRS{idProduct}
 ```
 4. Restart your PC
 5. Run executable from the /PACView-Source-x.x.x/app/dist/ folder
+
+## Troubleshooting
+### General
+* Drivers are automatically installed in Windows 10, Ubuntu. If they're not installed automatically, try downloading and installing them from here: https://www.microchip.com/wwwproducts/en/MCP2221A
+### Ubuntu
+* If the ```port 8080``` is already in use, the application may fail to start/work.
+  * #### Fix 1 (if PACView crashed without releasing the port): 
+    Close the process using terminal.
+    
+    To find the process try:
+    
+    ```sudo lsof -i :8080```
+    
+    then kill the process which is currently using the port using its PID.
+    
+    ```kill PID```
+    
+    Check to see if the port closed. If not, try:
+    
+    ```kill -9 PID```
+    
+    and only do the following if the previous didn't work.
+    
+    ```sudo kill -9 PID```
+    
+  * #### Fix 2 (if another application needs to use this port): 
+    Navigate to ```PACView-Source/app/gui.py``` and modify the port.
+    
+     ```python
+     app_options = {
+        'mode': "chrome-app",
+        'port': 8080,
+        'chromeFlags': [""]
+     }
+     ```
+     Then rebuild the app.
